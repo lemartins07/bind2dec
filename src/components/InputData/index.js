@@ -3,10 +3,11 @@ import React from "react";
 import { Container, Content, Input, Button } from './styles';
 
 export const InputData = (props) => {
+  //console.log('*** Input Props',props);
   return (
-    <div className="input-group">
+    <Container className="input-group">
       <label>Binary Input</label>
-      <div className="form-group">
+      <Content className="form-group">
         <Input
           name="binary" 
           placeholder="Binary" 
@@ -22,10 +23,10 @@ export const InputData = (props) => {
         >
           Convert
         </Button>
-      </div>
+      </Content>
       {!props.isValid && <span style={{color: 'red', display: 'block'}}>Número inválido, digite 0 ou 1</span>}
       {props.maxLength && <span style={{color: 'red'}}>Número máximo permitido, 8 dígitos</span>}
-    </div>
+    </Container>
   );
 }
 

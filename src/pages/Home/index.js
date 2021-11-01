@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 
-import { Container, Content, Input, Button } from './styles';
+import { Container, Content } from './styles';
 
 import { InputData } from '../../components/InputData'
+import { OutputData } from '../../components/OutputData'
 
 export const Home = () => {
   
@@ -14,6 +15,7 @@ export const Home = () => {
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;    
+    //console.log('*** handleInputChange: ', name, value);
     setFormValues({...formValues, [name]: value});
     
     if(value.length >= 8) {
@@ -37,6 +39,8 @@ export const Home = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);   
     
+    console.log('*** handleSubmit: ', data)
+
     data.decimal = 0;
     
     for (let c = 0; c <  data.binary.length; c++) {
@@ -45,6 +49,7 @@ export const Home = () => {
     }
     data.binary = '';
     data.decimal = String(data.decimal);
+    console.log(data.decimal);
     setMaxLength(false);
     setFormValues(data);
   }
@@ -55,22 +60,15 @@ export const Home = () => {
         <h1>Binary to Decimal Converter</h1>
         <form onSubmit={handleSubmit} >
           
-          <InputData 
-            handleInputChange
+          <InputData
+            isValid={isValid}
+            maxLength={maxLength}
+            handleInputChange={handleInputChange}
+            formValues={formValues}
           />
           
-          <div className="output-group">
-            <div className="form-group">
-              <label>Decimal Output</label>
-              <Input                 
-                name="decimal"
-                placeholder="Decimal" 
-                readOnly 
-                value={formValues.decimal || ''}
-                isvalid="true"
-              />              
-            </div>
-          </div>
+          <OutputData formValues={formValues} />
+          
         </form>
       </Content>
     </Container>
