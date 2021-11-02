@@ -14,7 +14,11 @@ export const Container = styled.div`
 
 `;
 
-export const Input = styled.input`
+interface InputProps  {
+  isValid: boolean
+}
+
+export const Input = styled.input<InputProps>`
   width: 60%;
   height: 40px;
   border-radius: 5px;
@@ -23,7 +27,8 @@ export const Input = styled.input`
   border: 0;
   background: var(--rich-black);
   outline: 0;  
-  border: ${props => props.isvalid ? 0 : "1px solid red"};
+  border: ${props => props.isValid ? 0 : "1px solid red"};
+  margin-right: 20px;
 `;
 
 export const Content = styled.div`

@@ -22,11 +22,7 @@ export const Content = styled.main`
     padding: 20px;  
     border: 1px solid var(--rich-black);
     background: var(--oxford-blue);
+    border-radius: 5px;
   }
-  .output-group .form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 2rem;
-    padding: 5px;    
-  }  
+  
 `;

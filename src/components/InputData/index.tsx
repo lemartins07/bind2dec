@@ -1,8 +1,16 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 import { Container, Content, Input, Button } from './styles';
 
-export const InputData = (props) => {
+interface InputDataProps {
+  isValid: boolean,
+  maxlength: boolean,
+  handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void,
+  binary: string | undefined,
+}
+  
+
+export const InputData: React.FC<InputDataProps> = (props) => {
   //console.log('*** Input Props',props);
   return (
     <Container className="input-group">
@@ -10,12 +18,12 @@ export const InputData = (props) => {
       <Content className="form-group">
         <Input
           name="binary" 
-          placeholder="Binary" 
-          maxLength="8"
-          isvalid={props.isValid}
-          value={props.formValues.binary || ''}
+          placeholder="Binary"           
+          isValid={props.isValid}
+          value={props.binary}
           onChange={props.handleInputChange}
           autoComplete="off"
+          maxLength={8}
         />              
         <Button 
           type="submit"                
@@ -25,7 +33,7 @@ export const InputData = (props) => {
         </Button>
       </Content>
       {!props.isValid && <span style={{color: 'red', display: 'block'}}>Número inválido, digite 0 ou 1</span>}
-      {props.maxLength && <span style={{color: 'red'}}>Número máximo permitido, 8 dígitos</span>}
+      {props.maxlength && <span style={{color: 'red'}}>Número máximo permitido, 8 dígitos</span>}
     </Container>
   );
 }

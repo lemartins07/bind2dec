@@ -2,7 +2,7 @@ import { GlobalStyle } from './styles/global';
 
 import { Home } from './pages/Home';
 
-function App() {
+function App(): JSX.Element {
   return (
     <>
       <GlobalStyle />
